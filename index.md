@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Cheney's Learning Home"
-  tagline: My great project tagline
+  name: "Pan's Learning Home"
+  tagline: Iterate Without Limits.
   actions:
     - theme: brand
       text: Markdown Examples
@@ -17,7 +17,7 @@ features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Lorem ipsum dolor sit amet
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
