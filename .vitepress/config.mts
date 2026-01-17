@@ -32,7 +32,7 @@ export default defineConfig({
           text: '嵌入式基础',
           items: [
              // 预留位置，以后写了文件再取消注释
-             // { text: 'STM32 启动流程', link: '/c-lang/stm32-boot' }
+             { text: '嵌入式滤波算法', link: '/c-lang/Filtering Algorithm' }
           ]
         }
       ],
