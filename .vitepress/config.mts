@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: "Pan's LearningNotes",
+  base: "/learning-notes/",
   description: "学习笔记",
   themeConfig: {
     nav: [
