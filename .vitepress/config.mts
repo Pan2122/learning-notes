@@ -42,7 +42,7 @@ export default defineConfig({
         {
           text: 'EDA 工具',
           items: [
-            { text: 'AD 快捷键大全', link: '/hardware/ad-shortcuts' },
+            { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },
           ]
         },
         {
