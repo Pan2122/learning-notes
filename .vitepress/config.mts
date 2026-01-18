@@ -13,7 +13,37 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.png' }]
   ],
   // 👆=============================================👆
+  
+  // 启用文章最后更新时间显示（显示在文章底部）
+  lastUpdated: true,
+  
   themeConfig: {
+    // 自定义最后更新时间的显示文本和格式
+    lastUpdated: {
+      text: '最后更新：',
+      formatOptions: {
+        dateStyle: 'long',
+        timeStyle: 'short'
+      }
+    },
+    
+    // 启用本地搜索功能（显示在右上角）
+    search: {
+      provider: 'local',
+      options: {
+        // 优化搜索体验：支持模糊匹配和前缀匹配
+        miniSearch: {
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true,
+            boost: {
+              title: 4,
+              text: 2
+            }
+          }
+        }
+      }
+    },
     // 1. 顶部导航栏 (顶部的菜单)
     nav: [
       { text: '首页', link: '/' },
