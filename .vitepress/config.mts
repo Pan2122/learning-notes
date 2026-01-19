@@ -1,15 +1,9 @@
 import { defineConfig } from 'vitepress'
-import markdownItMathjax3 from 'markdown-it-mathjax3'
 
 export default defineConfig({
   // 你的仓库名，千万别改错
   base: "/learning-notes/", 
-  // 添加下面这段 markdown 配置
-  markdown: {
-    config: (md) => {
-      md.use(markdownItMathjax3)
-    }
-  },
+  
   title: "Pan's LearningNotes",
   description: "学习笔记",
 // 👇================= 请把这 4 行代码补在这个位置 =================👇
