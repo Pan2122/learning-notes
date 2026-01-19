@@ -1,4 +1,4 @@
-# 单函道风扇无人机的推力矢量控制(TVC)
+# 单函道垂直起降无人机推力矢量控制系统(TVC)
 
 ![项目成品图](/images/projects/TVC-UAV/TVC_Drone.png)
 

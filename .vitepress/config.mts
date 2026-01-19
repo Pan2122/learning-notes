@@ -95,7 +95,7 @@ head: [
           items: [
             { text: '智能家居控制系统', link: '/projects/smart-home' },
             { text: 'TPS54302 电源模块', link: '/projects/tps54302-module' },
-            { text: '单涵道垂直起降无人机矢量推力控制系统', link: '/projects/TVC-UAV' },
+            { text: '无人机矢量推力控制系统', link: '/projects/TVC-UAV' },
           ]
         }
       ],
