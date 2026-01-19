@@ -32,7 +32,7 @@ tags:
 
 原理图基于 TI 官方推荐电路进行调整。
 
-![最终版原理图](/images/projects/tps54302/schematic-final.png)
+![最终版原理图](/learning-notes/images/projects/tps54302/schematic-final.png)
 *图注：最终版原理图，采用网络标签避免了交叉走线风险*
 
 ### 关键计算
@@ -66,7 +66,7 @@ $$
 
 参考 TI 官方 Datasheet 中的 Layout 建议，核心原则是减小高频回路面积。
 
-![TI Datasheet 提供的 Layout 黄金法则](/images/projects/tps54302/ti-layout-guide.png)
+![TI Datasheet 提供的 Layout 黄金法则](/learning-notes/images/projects/tps54302/ti-layout-guide.png)
 *图注：TI Datasheet 提供的 Layout 黄金法则*
 
 ### 3.2 环路优化实战
@@ -79,7 +79,7 @@ $$
     * ❌ **错误做法**：电阻放在输出端，FB 信号线跨越半个板子回到芯片（容易耦合 SW 噪声）。
     * ✅ **正确做法**：将分压电阻 R1/R2 **紧靠芯片 FB 引脚放置**。从远端 VOUT 拉一根长线（低阻抗，抗干扰强）过来。
 
-![最终 Layout 方案](/images/projects/tps54302/layout-routing.png)
+![最终 Layout 方案](/learning-notes/images/projects/tps54302/layout-routing.png)
 *图注：最终 Layout 方案。注意右下角 R1/R2 紧贴芯片，输入电容紧贴 VIN*
 
 ### 3.3 DFM (可制造性) 检查
@@ -97,10 +97,10 @@ $$
 * **元素**：高对比度的色块、粗线条边框、加上“IN/OUT”流向指示。
 * **配色**：最终选择了 **紫色阻焊 (Purple Solder Mask)** 搭配 **白色丝印**，并在焊盘处做沉金处理（ENIG），呈现出高端显卡般的质感。
 
-![背面定制的 SVG 铭牌](/images/projects/tps54302/3d-back-silk.png)
+![背面定制的 SVG 铭牌](/learning-notes/images/projects/tps54302/3d-back-silk.png)
 *图注：背面定制的 SVG 铭牌，清晰标注了输入输出参数，既美观又防呆*
 
-![正面布局紧凑](/images/projects/tps54302/3d-front-view.png)
+![正面布局紧凑](/learning-notes/images/projects/tps54302/3d-front-view.png)
 *图注：正面布局紧凑，紫色板材预览*
 
 ## 5. 测试与验证 (To Be Continued...)
