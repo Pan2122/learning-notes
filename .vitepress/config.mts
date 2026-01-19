@@ -94,6 +94,7 @@ head: [
           text: '我的项目',
           items: [
             { text: '智能家居控制系统', link: '/projects/smart-home' },
+            { text: 'TPS54302 电源模块', link: '/projects/tps54302-module' },
           ]
         }
       ],
