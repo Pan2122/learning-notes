@@ -93,9 +93,9 @@ head: [
         {
           text: '我的项目',
           items: [
-            { text: '智能家居控制系统', link: '/projects/smart-home' },
             { text: 'TPS54302 电源模块', link: '/projects/tps54302-module' },
             { text: '无人机矢量推力控制系统', link: '/projects/TVC-UAV' },
+            { text: '本网站项目结构维护说明', link: '/projects/Project Architecture' },
           ]
         }
       ],
@@ -105,7 +105,7 @@ head: [
         {
           text: '随想录',
           items: [
-            { text: '日常学习打卡', link: '/ideas/daily-log' },
+            { text: '我的工作流', link: '/ideas/workflow-tools' },
             { text: '未来方案灵感', link: '/ideas/future-plan' },
           ]
         }
@@ -113,7 +113,7 @@ head: [
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Pan2122/learning-notes' }
+      { icon: 'github', link: 'https://github.com/Pan2122' }
     ]
   }
 })
