@@ -14,10 +14,10 @@ hero:
       link: /hardware/ad-shortcuts
     - theme: brand
       text: 🌍 查看个人项目
-      link: /projects/smart-home
+      link: /projects/tps54302-module
     - theme: brand
       text: 🌌 灵感与思考
-      link: /ideas/daily-log
+      link: /ideas/workflow-tools
 
 features:
   - title: 软件设计
