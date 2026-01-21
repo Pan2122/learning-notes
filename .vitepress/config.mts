@@ -48,8 +48,8 @@ head: [
       { text: '首页', link: '/' },
       { text: 'C语言/软件', link: '/c-lang/pointer' },
       { text: '硬件设计', link: '/hardware/ad-shortcuts' },
-      { text: '个人项目', link: '/projects/smart-home' },
-      { text: '灵感想法', link: '/ideas/daily-log' }
+      { text: '个人项目', link: '/projects/tps54302-module' },
+      { text: '灵感想法', link: '/ideas/workflow-tools' }
     ],
 
     // 2. 侧边栏 (左侧的目录，根据路径自动切换)
