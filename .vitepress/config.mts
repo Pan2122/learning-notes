@@ -67,7 +67,8 @@ head: [
           text: '嵌入式基础',
           items: [
              // 预留位置，以后写了文件再取消注释
-             { text: '嵌入式滤波算法', link: '/c-lang/Filtering Algorithm' }
+             { text: '嵌入式滤波算法', link: '/c-lang/Filtering Algorithm' },
+             { text: '旋转编码器：从原理到实战', link: '/c-lang/Encoder Principle' }
           ]
         }
       ],
