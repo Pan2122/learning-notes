@@ -10,7 +10,7 @@ tags:
 ---
 
 # 📝 旋转编码器全平台通识笔记：从原理到实战
-![图](/images/c-lang/Encoder Principle/headphoto.jpg)
+![首图](/images/c-lang/EncoderPrinciple/headphoto.png)
 ## 第一部分：物理原理 —— A 相和 B 相的赛跑
 
 普通的按键只有两个引脚（通或断），但旋转编码器有三个关键引脚：​**A、B、GND**​。
@@ -113,7 +113,7 @@ ESP32 不使用普通的定时器来做编码器解码，它有一个更强大�
 
 * 如果 `diff` 是个极大的负数（如 -65000），说明发生了正向溢出 → 判定为 ​**正转**​。
 * 如果 `diff` 是个极大的正数（如 +65000），说明发生了反向溢出 → 判定为 ​**反转**​。
-![环形计数器的溢出与下溢示意图](/images/c-lang/Encoder Principle/Ringcounter.png)
+![环形计数器的溢出与下溢示意图](/images/c-lang/EncoderPrinciple/Ringcounter.png)
 
 *(图注：展示 0 和 65535 之间的跳变关系，解释为什么差值会变成巨大负数)*
 
