@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import markdownItMathjax3 from 'markdown-it-mathjax3'
 
 export default defineConfig({
   // 你的仓库名，千万别改错
@@ -12,7 +13,11 @@ head: [
   ['link', { rel: 'icon', href: '/learning-notes/favicon.png' }]
 ],
 // 👆==============================================================👆
-  
+markdown: {
+  config: (md) => {
+    md.use(markdownItMathjax3) // <--- 2. 启用插件
+  }
+},
   // 启用文章最后更新时间显示（显示在文章底部）
   lastUpdated: true,
   
@@ -85,6 +90,7 @@ head: [
           text: '电路基础',
           items: [
             { text: '电路设计', link: '/hardware/basic-circuit' },
+            { text: 'PN结原理', link: '/hardware/PNSemiconductor' },
           ]
         }
       ],
