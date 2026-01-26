@@ -52,7 +52,7 @@ markdown: {
     nav: [
       { text: '首页', link: '/' },
       { text: 'C语言/软件', link: '/c-lang/pointer' },
-      { text: '硬件设计', link: '/hardware/ad-shortcuts' },
+      { text: '硬件设计', link: '/hardware/PNSemiconductor' },
       { text: '个人项目', link: '/projects/tps54302-module' },
       { text: '灵感想法', link: '/ideas/workflow-tools' }
     ],
@@ -81,16 +81,16 @@ markdown: {
       // 当用户在 /hardware/ 目录下时，显示这个侧边栏
       '/hardware/': [
         {
-          text: 'EDA 工具',
+          text: '电路基础',
           items: [
-            { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },
+            { text: 'PN结原理', link: '/hardware/PNSemiconductor' },
+            { text: '电路设计', link: '/hardware/basic-circuit' },
           ]
         },
         {
-          text: '电路基础',
+          text: 'EDA 工具',
           items: [
-            { text: '电路设计', link: '/hardware/basic-circuit' },
-            { text: 'PN结原理', link: '/hardware/PNSemiconductor' },
+            { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },
           ]
         }
       ],
