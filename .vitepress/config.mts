@@ -65,7 +65,7 @@ markdown: {
           text: 'C 语言核心',
           items: [
             { text: '指针与结构体复盘', link: '/c-lang/pointer' },
-            { text: '内存管理详解', link: '/c-lang/memory' }, // 记得去建这个文件
+            //{ text: '内存管理详解', link: '/c-lang/memory' }, // 记得去建这个文件
           ]
         },
         {
@@ -84,7 +84,8 @@ markdown: {
           text: '电路基础',
           items: [
             { text: 'PN结原理', link: '/hardware/PNSemiconductor' },
-            { text: '电路设计', link: '/hardware/basic-circuit' },
+            //{ text: '电路设计', link: '/hardware/basic-circuit' },
+            { text: '环路稳定性分析', link: '/hardware/LoopStability' },
           ]
         },
         {
@@ -113,7 +114,7 @@ markdown: {
           text: '随想录',
           items: [
             { text: '我的工作流', link: '/ideas/workflow-tools' },
-            { text: '未来方案灵感', link: '/ideas/future-plan' },
+            //{ text: '未来方案灵感', link: '/ideas/future-plan' },
           ]
         }
       ]

@@ -11,7 +11,7 @@ hero:
       link: /c-lang/pointer
     - theme: brand
       text: 📝 查看硬件笔记
-      link: /hardware/ad-shortcuts
+      link: /hardware/PNSemiconductor
     - theme: brand
       text: 🌍 查看个人项目
       link: /projects/tps54302-module
