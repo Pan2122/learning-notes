@@ -74,7 +74,9 @@ markdown: {
              // 预留位置，以后写了文件再取消注释
              { text: '嵌入式滤波算法', link: '/c-lang/Filtering Algorithm' },
              { text: '旋转编码器：从原理到实战', link: '/c-lang/Encoder Principle' },
-             { text: 'SMA760 学习记录', link: '/c-lang/SMA760' }
+             { text: 'CubeMX+Keil环境迁移、调试避坑', link: '/c-lang/CubeMX&Keil' },
+             { text: 'SMA760 学习记录', link: '/c-lang/SMA760' },
+             { text: 'SPI 协议底层逻辑与传感器实战', link: '/c-lang/SPI' },
           ]
         }
       ],
