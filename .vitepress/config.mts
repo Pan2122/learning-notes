@@ -77,6 +77,7 @@ markdown: {
              { text: 'CubeMX+Keil环境迁移调试', link: '/c-lang/CubeMX&Keil' },
              { text: 'SMA760 学习记录', link: '/c-lang/SMA760' },
              { text: 'SPI 协议底层逻辑与传感器实战', link: '/c-lang/SPI' },
+             { text: 'STM32 串口打印排坑与稳健实现方案', link: '/c-lang/stm32-uart-printf-guide' },
           ]
         }
       ],
