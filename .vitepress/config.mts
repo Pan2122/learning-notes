@@ -113,6 +113,7 @@ markdown: {
           items: [
             { text: 'TPS54302 电源模块', link: '/projects/tps54302-module' },
             { text: '无人机矢量推力控制系统', link: '/projects/TVC-UAV' },
+            { text: 'AD2428 A2B 主机板设计复盘：TDM 长线、EMC 定位与 Sensor 接入', link: '/projects/ad2428-master-board' },
             { text: '本网站项目结构维护说明', link: '/projects/Project Architecture' },
           ]
         }
