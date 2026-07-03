@@ -97,6 +97,12 @@ markdown: {
           items: [
             { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },
           ]
+        },
+        {
+          text: 'EMC 与可靠性',
+          items: [
+            { text: 'EMC 测试项目速查：RE、CE、RI 与常见抗扰度', link: '/hardware/emc-test-items' },
+          ]
         }
       ],
 
