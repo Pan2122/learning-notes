@@ -93,6 +93,12 @@ markdown: {
           ]
         },
         {
+          text: '模拟与芯片测试',
+          items: [
+            { text: '带隙基准原理与芯片测试学习指南', link: '/hardware/bandgap-reference' },
+          ]
+        },
+        {
           text: 'EDA 工具',
           items: [
             { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },

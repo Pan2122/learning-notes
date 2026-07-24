@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Bandgap reference observation path</title>
+  <desc id="desc">Decision flow for choosing direct measurement or indirect observability before defining bandgap reference limits.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #17365d; }
+      .boxText { font: 600 24px Arial, sans-serif; fill: #17365d; }
+      .small { font: 500 21px Arial, sans-serif; fill: #334155; }
+      .yes { font: 700 24px Arial, sans-serif; fill: #2f6f4e; }
+      .no { font: 700 24px Arial, sans-serif; fill: #9b1c1c; }
+      .line { stroke: #667085; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1120" height="620" fill="#ffffff"/>
+  <text x="560" y="54" text-anchor="middle" class="title">Choose the observation path before defining limits</text>
+
+  <rect x="350" y="95" width="420" height="86" rx="14" fill="#dcebf8" stroke="#2f75b5" stroke-width="4"/>
+  <text x="560" y="148" text-anchor="middle" class="boxText">Can VBG / VREF be routed to a pad?</text>
+
+  <path d="M470 181 L285 285" class="line"/>
+  <path d="M650 181 L835 285" class="line"/>
+  <text x="348" y="251" text-anchor="middle" class="yes">YES</text>
+  <text x="772" y="251" text-anchor="middle" class="no">NO</text>
+
+  <rect x="80" y="285" width="410" height="92" rx="12" fill="#e2f2e8" stroke="#2f6f4e" stroke-width="4"/>
+  <text x="285" y="325" text-anchor="middle" class="boxText">Direct measurement</text>
+  <text x="285" y="356" text-anchor="middle" class="small">High-Z digitizer / DMM</text>
+
+  <rect x="630" y="285" width="410" height="92" rx="12" fill="#fff4d8" stroke="#b7791f" stroke-width="4"/>
+  <text x="835" y="325" text-anchor="middle" class="boxText">Indirect observability</text>
+  <text x="835" y="356" text-anchor="middle" class="small">Known transfer function</text>
+
+  <path d="M285 377 L285 455" class="line"/>
+  <path d="M835 377 L835 455" class="line"/>
+
+  <rect x="45" y="455" width="480" height="110" rx="12" fill="#f8fafc" stroke="#6b829b" stroke-width="4"/>
+  <text x="285" y="495" text-anchor="middle" class="small">Measure initial error, TC, line/load regulation,</text>
+  <text x="285" y="528" text-anchor="middle" class="small">PSRR, noise, startup and trim response.</text>
+
+  <rect x="595" y="455" width="480" height="110" rx="12" fill="#f8fafc" stroke="#6b829b" stroke-width="4"/>
+  <text x="835" y="495" text-anchor="middle" class="small">Infer through ADC ratio, comparator threshold scan,</text>
+  <text x="835" y="528" text-anchor="middle" class="small">LDO output, POR trip point or monitor code.</text>
+</svg>
