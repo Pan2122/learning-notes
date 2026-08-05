@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">PSI5 Manchester 中点跳变</title>
+  <desc id="desc">每个 bit 的中点必然跳变，中点低到高表示 0，中点高到低表示 1。</desc>
+  <rect width="1200" height="360" fill="#ffffff"/>
+  <text x="600" y="38" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" font-weight="700" fill="#17324d">Manchester：每个 bit 的中点必然发生一次跳变</text>
+  <line x1="120" y1="245" x2="1080" y2="245" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="120" y1="115" x2="120" y2="245" stroke="#94a3b8" stroke-width="2"/>
+  <text x="95" y="122" text-anchor="end" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">高电流</text>
+  <text x="95" y="250" text-anchor="end" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">低电流</text>
+  <path d="M120 245 H200 V115 H280 V245 H360 V115 H520 V245 H600 V115 H680 V245 H760 V115 H920 V245 H1000 V115 H1080 V245" fill="none" stroke="#2386a8" stroke-width="5" stroke-linejoin="round"/>
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 6">
+    <line x1="200" y1="80" x2="200" y2="275"/><line x1="280" y1="80" x2="280" y2="275"/>
+    <line x1="360" y1="80" x2="360" y2="275"/><line x1="520" y1="80" x2="520" y2="275"/>
+    <line x1="600" y1="80" x2="600" y2="275"/><line x1="680" y1="80" x2="680" y2="275"/>
+    <line x1="760" y1="80" x2="760" y2="275"/><line x1="920" y1="80" x2="920" y2="275"/>
+    <line x1="1000" y1="80" x2="1000" y2="275"/>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="20" fill="#17324d" text-anchor="middle">
+    <text x="240" y="88">0</text><text x="440" y="88">0</text><text x="560" y="88">1</text><text x="640" y="88">1</text><text x="840" y="88">0</text><text x="1040" y="88">1</text>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="14" fill="#64748b" text-anchor="middle">
+    <text x="240" y="300">bit 0</text><text x="440" y="300">bit 1</text><text x="560" y="300">bit 2</text><text x="640" y="300">bit 3</text><text x="840" y="300">bit 4</text><text x="1040" y="300">bit 5</text>
+  </g>
+  <text x="600" y="335" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#475569">判决看中点方向：低 -> 高为 0，高 -> 低为 1；不要把 bit 边界跳变当成中点</text>
+</svg>

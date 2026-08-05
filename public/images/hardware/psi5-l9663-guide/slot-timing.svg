@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">PSI5 同步周期与时隙</title>
+  <desc id="desc">ECU 发出 SYNC 后，各传感器在自己的 slot 起始时间发送响应，帧之间需要 guard。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1200" height="400" fill="#ffffff"/>
+  <text x="600" y="38" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" font-weight="700" fill="#17324d">同步模式：从 SYNC 计时，用 slot 错开多个响应</text>
+  <text x="90" y="125" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#64748b">电压</text>
+  <text x="90" y="262" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#64748b">电流</text>
+  <line x1="150" y1="140" x2="1090" y2="140" stroke="#b87513" stroke-width="3"/>
+  <path d="M150 140 V70 H195 V140" fill="none" stroke="#b87513" stroke-width="8"/>
+  <text x="173" y="58" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#b87513">SYNC</text>
+  <line x1="150" y1="280" x2="1090" y2="280" stroke="#2386a8" stroke-width="3"/>
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5 6"><line x1="300" y1="160" x2="300" y2="320"/><line x1="510" y1="160" x2="510" y2="320"/><line x1="700" y1="160" x2="700" y2="320"/><line x1="900" y1="160" x2="900" y2="320"/></g>
+  <g fill="#eaf6f1" stroke="#25866d" stroke-width="2">
+    <rect x="300" y="238" width="150" height="55" rx="5"/><rect x="510" y="238" width="150" height="55" rx="5"/><rect x="700" y="238" width="150" height="55" rx="5"/>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" text-anchor="middle" fill="#17745d">
+    <text x="375" y="271">Slot 1 / S1</text><text x="585" y="271">Slot 2 / S2</text><text x="775" y="271">Slot 3 / S3</text>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="14" fill="#64748b" text-anchor="middle"><text x="300" y="330">Tstart 1</text><text x="510" y="330">Tstart 2</text><text x="700" y="330">Tstart 3</text></g>
+  <line x1="150" y1="360" x2="1090" y2="360" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="620" y="385" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#475569">TSYNC（例：500 us） | 相邻起始时间需要覆盖 Tframe + Tguard</text>
+</svg>

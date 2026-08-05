@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">PSI5 上行帧结构</title>
+  <desc id="desc">PSI5 常见帧由两个固定 start bit、LSB first 数据区和 parity 或 CRC-3 校验组成。</desc>
+  <rect width="1200" height="430" fill="#ffffff"/>
+  <text x="600" y="38" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" font-weight="700" fill="#17324d">常见 PSI5 帧：Start + Data + Error Check</text>
+  <text x="100" y="105" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18" font-weight="700" fill="#17324d">10-bit + 偶校验（13 bit）</text>
+  <g stroke="#ffffff" stroke-width="2">
+    <rect x="100" y="125" width="76" height="62" fill="#64748b"/><rect x="176" y="125" width="76" height="62" fill="#64748b"/>
+    <rect x="252" y="125" width="600" height="62" fill="#2b7ca6"/><rect x="852" y="125" width="150" height="62" fill="#b87513"/>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" text-anchor="middle" fill="#ffffff">
+    <text x="138" y="162">S1=0</text><text x="214" y="162">S2=0</text><text x="552" y="162">D0 ... D9，LSB first</text><text x="927" y="162">P</text>
+  </g>
+  <line x1="100" y1="207" x2="1002" y2="207" stroke="#94a3b8" stroke-width="2"/>
+  <text x="100" y="242" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18" font-weight="700" fill="#17324d">10-bit + CRC-3（15 bit）</text>
+  <g stroke="#ffffff" stroke-width="2">
+    <rect x="100" y="262" width="76" height="62" fill="#64748b"/><rect x="176" y="262" width="76" height="62" fill="#64748b"/>
+    <rect x="252" y="262" width="600" height="62" fill="#2b7ca6"/><rect x="852" y="262" width="225" height="62" fill="#b87513"/>
+  </g>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" text-anchor="middle" fill="#ffffff">
+    <text x="138" y="299">S1=0</text><text x="214" y="299">S2=0</text><text x="552" y="299">D0 ... D9，LSB first</text><text x="964" y="299">C2 C1 C0</text>
+  </g>
+  <text x="600" y="370" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#475569">校验只覆盖数据区；帧的位序、CRC 输入方向和发送顺序必须与目标传感器手册一致</text>
+  <text x="600" y="400" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">总 bit 数：Parity 帧 = k + 3；CRC 帧 = k + 5，其中 k 为数据区位数</text>
+</svg>

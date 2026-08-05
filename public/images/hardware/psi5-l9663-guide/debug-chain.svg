@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">PSI5 六层调试证据链</title>
+  <desc id="desc">从供电、同步、电流、编码、帧到软件逐层验证，前一层未成立时不要直接怀疑 CRC。</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#64748b"/></marker></defs>
+  <rect width="1200" height="300" fill="#ffffff"/>
+  <text x="600" y="38" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" font-weight="700" fill="#17324d">PSI5 调试要按层闭环：前一层没成立，不要直接怀疑 CRC</text>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" text-anchor="middle">
+    <g><rect x="40" y="95" width="160" height="105" rx="12" fill="#eaf6f1" stroke="#25866d" stroke-width="2"/><circle cx="75" cy="130" r="20" fill="#25866d"/><text x="75" y="137" font-size="16" fill="#ffffff">1</text><text x="120" y="155" font-size="18" fill="#17324d">供电</text><text x="120" y="180" font-size="14" fill="#64748b">VPSI / Iq</text></g>
+    <g><rect x="220" y="95" width="160" height="105" rx="12" fill="#eaf6f1" stroke="#25866d" stroke-width="2"/><circle cx="255" cy="130" r="20" fill="#25866d"/><text x="255" y="137" font-size="16" fill="#ffffff">2</text><text x="300" y="155" font-size="18" fill="#17324d">同步</text><text x="300" y="180" font-size="14" fill="#64748b">幅值 / 宽度</text></g>
+    <g><rect x="400" y="95" width="160" height="105" rx="12" fill="#eaf6f1" stroke="#25866d" stroke-width="2"/><circle cx="435" cy="130" r="20" fill="#25866d"/><text x="435" y="137" font-size="16" fill="#ffffff">3</text><text x="480" y="155" font-size="18" fill="#17324d">电流</text><text x="480" y="180" font-size="14" fill="#64748b">dI / 阈值</text></g>
+    <g><rect x="580" y="95" width="160" height="105" rx="12" fill="#e7f2fa" stroke="#1b6fae" stroke-width="2"/><circle cx="615" cy="130" r="20" fill="#1b6fae"/><text x="615" y="137" font-size="16" fill="#ffffff">4</text><text x="660" y="155" font-size="18" fill="#17324d">编码</text><text x="660" y="180" font-size="14" fill="#64748b">中点跳变</text></g>
+    <g><rect x="760" y="95" width="160" height="105" rx="12" fill="#e7f2fa" stroke="#1b6fae" stroke-width="2"/><circle cx="795" cy="130" r="20" fill="#1b6fae"/><text x="795" y="137" font-size="16" fill="#ffffff">5</text><text x="840" y="155" font-size="18" fill="#17324d">帧</text><text x="840" y="180" font-size="14" fill="#64748b">长度 / 时隙</text></g>
+    <g><rect x="940" y="95" width="160" height="105" rx="12" fill="#e7f2fa" stroke="#1b6fae" stroke-width="2"/><circle cx="975" cy="130" r="20" fill="#1b6fae"/><text x="975" y="137" font-size="16" fill="#ffffff">6</text><text x="1020" y="155" font-size="18" fill="#17324d">软件</text><text x="1020" y="180" font-size="14" fill="#64748b">SPI / CRC / 状态</text></g>
+  </g>
+  <g stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"><line x1="200" y1="148" x2="218" y2="148"/><line x1="380" y1="148" x2="398" y2="148"/><line x1="560" y1="148" x2="578" y2="148"/><line x1="740" y1="148" x2="758" y2="148"/><line x1="920" y1="148" x2="938" y2="148"/></g>
+  <text x="600" y="250" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#475569">一次只改变一个变量，同时保存原始波形、寄存器快照和时间戳</text>
+</svg>
