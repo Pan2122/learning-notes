@@ -109,6 +109,7 @@ markdown: {
           text: 'EMC 与可靠性',
           items: [
             { text: 'EMC 测试项目速查：RE、CE、RI 与常见抗扰度', link: '/hardware/emc-test-items' },
+            { text: '共模与差模：从模拟电路到 EMC 调试', link: '/hardware/common-differential-mode' },
           ]
         }
       ],

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">EMC 中的共模与差模电流回路</title>
+  <desc id="desc">差模电流在两根线之间闭合，共模电流沿多个导体同向流动，并通过寄生电容或机壳返回。</desc>
+  <defs>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#c2413b"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#21865e"/></marker>
+  </defs>
+  <rect width="1200" height="560" fill="#ffffff"/>
+  <text x="300" y="42" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="25" font-weight="700" fill="#17324d">差模 DM：线间闭合</text>
+  <text x="900" y="42" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="25" font-weight="700" fill="#17324d">共模 CM：同向流动后经环境返回</text>
+  <rect x="170" y="170" width="260" height="115" rx="14" fill="#edf3f8" stroke="#17324d" stroke-width="3"/>
+  <text x="300" y="222" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" fill="#17324d">DUT</text>
+  <text x="300" y="255" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">负载或被测设备</text>
+  <line x1="70" y1="150" x2="170" y2="150" stroke="#c2413b" stroke-width="6" marker-end="url(#arrow-red)"/>
+  <line x1="430" y1="150" x2="530" y2="150" stroke="#c2413b" stroke-width="6" marker-end="url(#arrow-red)"/>
+  <line x1="530" y1="150" x2="530" y2="350" stroke="#c2413b" stroke-width="6"/>
+  <line x1="530" y1="350" x2="70" y2="350" stroke="#c2413b" stroke-width="6" marker-end="url(#arrow-red)"/>
+  <line x1="70" y1="350" x2="70" y2="150" stroke="#c2413b" stroke-width="6"/>
+  <text x="300" y="122" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#c2413b">一根线正向，另一根线反向</text>
+  <text x="300" y="402" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">典型：VDD-GND 纹波、线间噪声</text>
+  <line x1="760" y1="150" x2="840" y2="150" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <line x1="760" y1="210" x2="840" y2="210" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <line x1="760" y1="270" x2="840" y2="270" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <text x="805" y="120" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#21865e">多根线上的 RF 电流同向</text>
+  <rect x="840" y="170" width="180" height="115" rx="14" fill="#edf3f8" stroke="#17324d" stroke-width="3"/>
+  <text x="930" y="222" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="24" fill="#17324d">DUT</text>
+  <text x="930" y="255" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">接口与设备</text>
+  <line x1="930" y1="285" x2="930" y2="350" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <ellipse cx="930" cy="400" rx="120" ry="42" fill="#eaf6f1" stroke="#21865e" stroke-width="3"/>
+  <text x="930" y="406" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#21865e">机壳 / 大地</text>
+  <line x1="930" y1="442" x2="930" y2="500" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <path d="M930 500 C700 500 700 150 760 150" fill="none" stroke="#21865e" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <text x="1080" y="360" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">寄生电容、屏蔽、地平面</text>
+  <text x="900" y="540" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="16" fill="#64748b">典型：BCI、辐射 EMI、开关节点 dv/dt 耦合</text>
+</svg>
