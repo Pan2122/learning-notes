@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">数字 MEMS 加速度计完整信号链</title>
+  <desc id="desc">从外部加速度到机械位移、差分电容、模拟前端、Sigma-Delta 调制、数字滤波和数字接口的信号链。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1400" height="520" fill="#ffffff"/>
+  <text x="700" y="42" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="28" font-weight="700" fill="#17324d">数字 MEMS 加速度计：从机械量到数字输出</text>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" text-anchor="middle">
+    <g><rect x="50" y="145" width="170" height="90" rx="12" fill="#fff4df" stroke="#b87513" stroke-width="3"/><text x="135" y="185" font-size="20" fill="#17324d">外部加速度</text><text x="135" y="215" font-size="17" fill="#64748b">a(t)</text></g>
+    <g><rect x="255" y="145" width="170" height="90" rx="12" fill="#eaf6f1" stroke="#25866d" stroke-width="3"/><text x="340" y="185" font-size="20" fill="#17324d">MEMS 结构</text><text x="340" y="215" font-size="17" fill="#64748b">m-k-c</text></g>
+    <g><rect x="460" y="145" width="170" height="90" rx="12" fill="#e7f2fa" stroke="#1b6fae" stroke-width="3"/><text x="545" y="185" font-size="20" fill="#17324d">差分电容</text><text x="545" y="215" font-size="17" fill="#64748b">dC</text></g>
+    <g><rect x="665" y="145" width="170" height="90" rx="12" fill="#e7f2fa" stroke="#1b6fae" stroke-width="3"/><text x="750" y="185" font-size="20" fill="#17324d">AFE / 解调</text><text x="750" y="215" font-size="17" fill="#64748b">模拟信号</text></g>
+    <g><rect x="870" y="145" width="170" height="90" rx="12" fill="#f2eafd" stroke="#7d4ba1" stroke-width="3"/><text x="955" y="185" font-size="20" fill="#17324d">Sigma-Delta</text><text x="955" y="215" font-size="17" fill="#64748b">高速 bitstream</text></g>
+    <g><rect x="1075" y="145" width="170" height="90" rx="12" fill="#f2eafd" stroke="#7d4ba1" stroke-width="3"/><text x="1160" y="185" font-size="20" fill="#17324d">数字滤波</text><text x="1160" y="215" font-size="17" fill="#64748b">LPF / 抽取 / FIR</text></g>
+  </g>
+  <g stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"><line x1="220" y1="190" x2="250" y2="190"/><line x1="425" y1="190" x2="455" y2="190"/><line x1="630" y1="190" x2="660" y2="190"/><line x1="835" y1="190" x2="865" y2="190"/><line x1="1040" y1="190" x2="1070" y2="190"/></g>
+  <rect x="180" y="320" width="1040" height="95" rx="16" fill="#f7fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="700" y="357" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="20" fill="#17324d">校准与输出</text>
+  <text x="700" y="390" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" fill="#64748b">Offset / Gain / Temperature Calibration -> 数字加速度 -> SPI / I2C / PSI5</text>
+  <line x1="1160" y1="235" x2="1160" y2="320" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="700" y="475" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18" fill="#475569">机械、模拟和数字三部分共同决定最终的带宽、噪声与延迟</text>
+</svg>

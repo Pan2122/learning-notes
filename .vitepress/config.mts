@@ -97,6 +97,7 @@ markdown: {
           items: [
             { text: '带隙基准原理与芯片测试学习指南', link: '/hardware/bandgap-reference' },
             { text: 'PSI5 协议学习手册：从原理到 L9663 调试', link: '/hardware/psi5-l9663-guide' },
+            { text: '为什么 MEMS 加速度计常用 Sigma-Delta ADC、低通滤波与 FIR', link: '/hardware/mems-accelerometer-sigma-delta' },
           ]
         },
         {

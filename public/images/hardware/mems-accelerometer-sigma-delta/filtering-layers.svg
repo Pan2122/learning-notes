@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">MEMS 加速度计三层滤波</title>
+  <desc id="desc">机械系统、模拟滤波和数字滤波共同决定最终带宽和频率响应。</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#64748b"/></marker></defs>
+  <rect width="1200" height="470" fill="#ffffff"/>
+  <text x="600" y="42" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="28" font-weight="700" fill="#17324d">最终频率响应是三层滤波共同作用的结果</text>
+  <g font-family="Arial,'Microsoft YaHei',sans-serif" text-anchor="middle">
+    <rect x="90" y="125" width="270" height="150" rx="14" fill="#eaf6f1" stroke="#25866d" stroke-width="3"/>
+    <rect x="465" y="125" width="270" height="150" rx="14" fill="#e7f2fa" stroke="#1b6fae" stroke-width="3"/>
+    <rect x="840" y="125" width="270" height="150" rx="14" fill="#f2eafd" stroke="#7d4ba1" stroke-width="3"/>
+    <text x="225" y="170" font-size="23" fill="#17324d">Mechanical</text><text x="225" y="205" font-size="18" fill="#17745d">Mass + Spring + Damper</text><text x="225" y="240" font-size="16" fill="#64748b">二阶响应 / 谐振峰</text>
+    <text x="600" y="170" font-size="23" fill="#17324d">Analog</text><text x="600" y="205" font-size="18" fill="#155e91">AFE + Analog LPF</text><text x="600" y="240" font-size="16" fill="#64748b">噪声 / 抗混叠 / 解调纹波</text>
+    <text x="975" y="170" font-size="23" fill="#17324d">Digital</text><text x="975" y="205" font-size="18" fill="#684087">Decimation + FIR / IIR</text><text x="975" y="240" font-size="16" fill="#64748b">ODR / 带宽 / 延迟</text>
+  </g>
+  <g stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"><line x1="360" y1="200" x2="460" y2="200"/><line x1="735" y1="200" x2="835" y2="200"/></g>
+  <rect x="280" y="345" width="640" height="62" rx="12" fill="#f7fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="600" y="384" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="19" fill="#17324d">H_total = H_MEMS * H_AFE * H_AnalogFilter * H_DigitalFilter</text>
+</svg>
