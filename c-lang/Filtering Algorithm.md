@@ -107,7 +107,7 @@
 
 ## ⚔️ 第三部分：DMP (硬件) vs. 软件卡尔曼
 
-在 MPU6050 等传感器应用中，这是一个经典的选择题。
+在 常见六轴 IMU 等传感器应用中，这是一个经典的选择题。
 
 | 特性 | DMP (Digital Motion Processor) | 软件卡尔曼 (Software Kalman) |
 | --- | --- | --- |

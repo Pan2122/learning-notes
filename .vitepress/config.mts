@@ -53,7 +53,7 @@ markdown: {
       { text: '首页', link: '/' },
       { text: 'C语言/软件', link: '/c-lang/pointer' },
       { text: '硬件设计', link: '/hardware/PNSemiconductor' },
-      { text: '个人项目', link: '/projects/tps54302-module' },
+      { text: '个人项目', link: '/projects/synchronous-buck-module' },
       { text: '灵感想法', link: '/ideas/workflow-tools' }
     ],
 
@@ -75,7 +75,7 @@ markdown: {
              { text: '嵌入式滤波算法', link: '/c-lang/Filtering Algorithm' },
              { text: '旋转编码器：从原理到实战', link: '/c-lang/Encoder Principle' },
              { text: 'CubeMX+Keil环境迁移调试', link: '/c-lang/CubeMX&Keil' },
-             { text: 'SMA760 学习记录', link: '/c-lang/SMA760' },
+             { text: '汽车级加速度计 SPI 学习记录', link: '/c-lang/automotive-accelerometer-spi' },
              { text: 'SPI 协议底层逻辑与传感器实战', link: '/c-lang/SPI' },
              { text: 'STM32 串口打印排坑与稳健实现方案', link: '/c-lang/stm32-uart-printf-guide' },
           ]
@@ -96,7 +96,7 @@ markdown: {
           text: '模拟与芯片测试',
           items: [
             { text: '带隙基准原理与芯片测试学习指南', link: '/hardware/bandgap-reference' },
-            { text: 'PSI5 协议学习手册：从原理到 L9663 调试', link: '/hardware/psi5-l9663-guide' },
+            { text: 'PSI5 协议学习手册：从原理到车规传感器调试', link: '/hardware/psi5-automotive-sensor-guide' },
             { text: '为什么 MEMS 加速度计常用 Sigma-Delta ADC、低通滤波与 FIR', link: '/hardware/mems-accelerometer-sigma-delta' },
           ]
         },
@@ -120,9 +120,9 @@ markdown: {
         {
           text: '我的项目',
           items: [
-            { text: 'TPS54302 电源模块', link: '/projects/tps54302-module' },
+            { text: '同步降压电源模块', link: '/projects/synchronous-buck-module' },
             { text: '无人机矢量推力控制系统', link: '/projects/TVC-UAV' },
-            { text: 'AD2428 A2B 主机板设计复盘：TDM 长线、EMC 定位与 Sensor 接入', link: '/projects/ad2428-master-board' },
+            { text: 'A2B 主机板设计复盘：TDM 长线、EMC 定位与传感器接入', link: '/projects/a2b-master-board' },
             { text: '本网站项目结构维护说明', link: '/projects/Project Architecture' },
           ]
         }

@@ -1,14 +1,14 @@
 ---
 layout: doc
 title: SPI 协议底层逻辑与传感器实战
-description: SPI 协议底层逻辑与传感器实战 (以 BMI160 为例)
+description: SPI 协议底层逻辑与传感器实战 (以 常见六轴 IMU 为例)
 tags: 
   - STM32
-  - BMI160
+  - 常见六轴 IMU
   - SPI
 ---
 
-## 📡 SPI 协议底层逻辑与传感器实战 (以 BMI160 为例)
+## 📡 SPI 协议底层逻辑与传感器实战 (以 常见六轴 IMU 为例)
 
 ### 前置基础：
 
@@ -27,10 +27,10 @@ SPI (Serial Peripheral Interface) 是一种 **同步**、**全双工**、**主�
 * `SDA / SDI` (Serial Data Input)：从机收，接主机的 **MOSI**。
 * `SDO` (Serial Data Output)：从机发，接主机的 **MISO**。
 * **通信模式 CPOL & CPHA**：
-* BMI160 支持模式 `00` 和 `11`。本质上，这两种模式都是在时钟的 **上升沿 (Rising Edge)** 采样数据。
+* 常见六轴 IMU 支持模式 `00` 和 `11`。本质上，这两种模式都是在时钟的 **上升沿 (Rising Edge)** 采样数据。
 * *AE 习惯*：配置为 `CPOL=High, CPHA=2 Edge`（平时时钟拉高，抗干扰更好）。杜邦线连接时，SPI 速率务必降至 5MHz 以下。
 * **读写标志 Read/Write bit**：最高位 MSB 决定方向。读为 1，写为 0。
-* **闭环验证 Chip ID**：点亮新芯片的第一步，永远是去读它的固定身份证号（如 `0x00` 地址预期返回 `0xD1`），以验证硬件连线与 SPI 时序是否完美。
+* **闭环验证 Chip ID**：点亮新芯片的第一步，永远是去读它的固定身份证号（如 `0x00` 地址预期返回 `设备手册定义的固定 ID`），以验证硬件连线与 SPI 时序是否完美。
 
 ### 2. 深入：位掩码 (Bit Mask) 与读写操作
 
@@ -58,16 +58,16 @@ SPI (Serial Peripheral Interface) 是一种 **同步**、**全双工**、**主�
 
 因此，在 STM32 的 HAL 库中，我们最常用、也最稳妥的函数不是单向的 Transmit 或 Receive，而是同时收发的 ​`HAL_SPI_TransmitReceive()`。
 
-### 4. 深入：BMI160 的“上升沿”锁定机制 (暗坑)
+### 4. 深入：常见六轴 IMU 的“上升沿”锁定机制 (暗坑)
 
-* **现象**：BMI160 上电默认处于 I2C 模式。根据手册，它需要检测到 CSB（片选）引脚产生一次 **从低到高的上升沿**，才会切换并锁定到 SPI 模式。
+* **现象**：常见六轴 IMU 上电默认处于 I2C 模式。根据手册，它需要检测到 CSB（片选）引脚产生一次 **从低到高的上升沿**，才会切换并锁定到 SPI 模式。
 * **解密**：CubeMX 在生成 GPIO 初始化代码时，如果将 CS 引脚配置为默认 `High`，单片机上电执行初始化的一瞬间，引脚电平从浮空猛增到 3.3V，这个物理变化恰好为传感器提供了一个完美的上升沿。
 * **鲁棒性建议**：为防止软复位导致引脚电平未发生跳变，推荐在代码初始化阶段，显式地加上“假动作”：
 
 ```c
-HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET); // 拉低
+HAL_GPIO_WritePin(IMU_CS_GPIO, IMU_CS_PIN, GPIO_PIN_RESET); // 拉低
 HAL_Delay(5);
-HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);   // 强制制造一次明确的上升沿
+HAL_GPIO_WritePin(IMU_CS_GPIO, IMU_CS_PIN, GPIO_PIN_SET);   // 强制制造一次明确的上升沿
 HAL_Delay(50);
 ```
 

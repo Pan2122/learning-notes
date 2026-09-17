@@ -1,16 +1,16 @@
 ---
 layout: doc
-title: PSI5 协议学习手册：从原理到 L9663 调试
-description: 从两线供电复用、Manchester 编码、帧与 CRC，到同步时隙、L9663 配置和波形定位的 PSI5 工程笔记。
+title: PSI5 协议学习手册：从原理到车规传感器调试
+description: 从两线供电复用、Manchester 编码、帧与 CRC，到同步时隙、主收发器配置和波形定位的 PSI5 工程笔记。
 tags:
   - PSI5
-  - L9663
+  - PSI5 主收发器
   - 汽车传感器
   - Manchester
   - 芯片调试
 ---
 
-# PSI5 协议学习手册：从原理到 L9663 调试
+# PSI5 协议学习手册：从原理到车规传感器调试
 
 > 简介：这是一份面向汽车远端传感器、MEMS、嵌入式和芯片 AE/FAE 工程师的学习与 bring-up 笔记。重点不是逐页翻译某颗芯片的数据手册，而是建立一条从线束波形到 MCU 数据的完整证据链。
 
@@ -22,9 +22,9 @@ PSI5 用一对导线给远端传感器供电：ECU -> 传感器主要通过抬�
 
 ## 使用边界
 
-本文把协议通用内容与 L9663 专用内容分开讨论。不同传感器支持的模式、位宽、同步周期、初始化阶段和编程命令并不完全相同；最终配置必须回到目标传感器的数据手册和具体采购料号。
+本文把协议通用内容与 主收发器相关内容分开讨论。不同传感器支持的模式、位宽、同步周期、初始化阶段和编程命令并不完全相同；最终配置必须回到目标传感器的数据手册和具体采购料号。
 
-本文以常见 PSI5 v1.3/v2.x 框架为主，L9663 的器件能力只代表“芯片支持的选项”，不代表某个 PSI5 子标准要求所有选项都必须使用。
+本文以常见 PSI5 v1.3/v2.x 框架为主，主收发器的器件能力只代表“芯片支持的选项”，不代表某个 PSI5 子标准要求所有选项都必须使用。
 
 ## 1. 建立正确的心智模型
 
@@ -37,7 +37,7 @@ PSI5（Peripheral Sensor Interface 5）是面向汽车远端传感器的数字�
 - 对线束噪声较强的抗扰能力；
 - 传感器和链路诊断。
 
-![PSI5 典型系统架构：MCU 通过主收发器连接远端传感器](/images/hardware/psi5-l9663-guide/system-architecture.svg)
+![PSI5 典型系统架构：MCU 通过主收发器连接远端传感器](/images/hardware/psi5-automotive-sensor-guide/system-architecture.svg)
 
 *图 1：MCU 通常不直接接传感器线，而是通过专用 PSI5 主收发器隔离数字接口与线束物理层。*
 
@@ -76,7 +76,7 @@ PSI5（Peripheral Sensor Interface 5）是面向汽车远端传感器的数字�
 
 - `ECU / Master / Leader`：提供电源、产生同步或命令脉冲、接收传感器电流调制。
 - `Sensor / Satellite / Slave / Follower`：远端传感器节点，接收供电与同步，并在配置的时隙中返回数据。
-- `PSI5 Transceiver`：位于 ECU 内，把传感器线的高压或大电流物理层与 MCU 数字接口隔开。L9663 就属于这一角色。
+- `PSI5 Transceiver`：位于 ECU 内，把传感器线的高压或大电流物理层与 MCU 数字接口隔开。目标主收发器属于这一角色。
 
 ## 3. 物理层：电压同步与电流回传
 
@@ -97,7 +97,7 @@ PSI5（Peripheral Sensor Interface 5）是面向汽车远端传感器的数字�
 - 上行使用相对明显的电流调制，不是在高阻逻辑输入上区分很小的电压差。
 - Manchester 每位中点必有跳变，接收器可以从边沿恢复时钟，并检查位时间和占空。
 - 两线可使用双绞线，电流回路面积较小；专用收发器还可以做滤波、基线跟踪、限流和诊断。
-- SYNC 的边沿可以在可靠识别与辐射发射之间折中。L9663 使用自动斜率控制，以更平滑的波形降低发射风险。
+- SYNC 的边沿可以在可靠识别与辐射发射之间折中。主收发器使用自动斜率控制，以更平滑的波形降低发射风险。
 
 ### 3.3 物理层不是“随便两根线”
 
@@ -109,7 +109,7 @@ PSI5（Peripheral Sensor Interface 5）是面向汽车远端传感器的数字�
 
 PSI5 上行位流使用 Manchester 编码。每一个 bit 时间被分成前后两个 half-bit，中点必然发生一次跳变。本文采用常见约定：中点电流低 -> 高表示逻辑 0，中点高 -> 低表示逻辑 1。
 
-![PSI5 Manchester 编码的中点跳变示意](/images/hardware/psi5-l9663-guide/manchester.svg)
+![PSI5 Manchester 编码的中点跳变示意](/images/hardware/psi5-automotive-sensor-guide/manchester.svg)
 
 *图 2：相邻同值 bit 可能在 bit 边界再出现一次跳变，但判决依据仍是中点方向。实际项目要以目标传感器和解码器的极性约定为准。*
 
@@ -136,7 +136,7 @@ PSI5 上行位流使用 Manchester 编码。每一个 bit 时间被分成前后�
 
 最常见的 PSI5 传感器上行帧由两个 start bit、数据区和错误检测位组成。start 固定为 `00`；数据按 `D0` 先发，即 LSB first；错误检测可使用 1 bit 偶校验或 CRC-3。
 
-![PSI5 常见帧结构：start、数据区和校验字段](/images/hardware/psi5-l9663-guide/frame-structure.svg)
+![PSI5 常见帧结构：start、数据区和校验字段](/images/hardware/psi5-automotive-sensor-guide/frame-structure.svg)
 
 *图 3：帧的字段顺序只是协议层的外壳，数据区内部如何拆成 payload、status、frame control 或 messaging，仍要查目标传感器手册。*
 
@@ -158,7 +158,7 @@ PSI5 上行位流使用 Manchester 编码。每一个 bit 时间被分成前后�
 
 ### 5.2 v1.3 与 v2.x 数据区
 
-v1.3 常见数据区长度由规范和器件模式限定；v2.x 可以在更宽的范围内组织数据，并拆成 Payload、Status、Frame Control 和 2-bit 慢速 Messaging 等字段。L9663 的接收能力可以覆盖 8 到 28 bit 数据区，但必须按目标传感器的实际帧定义解释这些 bit。
+v1.3 常见数据区长度由规范和器件模式限定；v2.x 可以在更宽的范围内组织数据，并拆成 Payload、Status、Frame Control 和 2-bit 慢速 Messaging 等字段。主收发器的接收能力可以覆盖 8 到 28 bit 数据区，但必须按目标传感器的实际帧定义解释这些 bit。
 
 数据区不是天然的“一个有符号数”。例如一个 16-bit 数据区可能由 12-bit 传感器值、1-bit 状态和 3-bit 帧计数构成。只有读懂字段定义、缩放关系和错误码，才能把 raw frame 转成 g、kPa 或角度。
 
@@ -220,9 +220,9 @@ uint8_t psi5_crc3_lsb(uint32_t data, uint8_t nbits)
 | `275h` | `111` | `7` |
 | `3FFh` | `100` | `4` |
 
-### 6.3 L9663 的双 CRC 陷阱
+### 6.3 主收发器的双 CRC 陷阱
 
-PSI5 传感器帧 CRC 是数据区 LSB first；L9663 的 32-bit SPI 通信虽然使用同一多项式族，但数据手册明确规定为 MSB first。两者输入位序不同，应建立两个独立、各自带测试向量的函数。
+PSI5 传感器帧 CRC 是数据区 LSB first；主收发器的 32-bit SPI 通信虽然使用同一多项式族，但数据手册明确规定为 MSB first。两者输入位序不同，应建立两个独立、各自带测试向量的函数。
 
 CRC 调试清单：
 
@@ -236,7 +236,7 @@ CRC 调试清单：
 
 同步模式的关键不是“有一个 SYNC 就够了”，而是所有节点从同一个时间参考开始计时，每个响应都必须在约定的 slot 中开始和结束。规划错误会导致电流叠加、帧碰撞或接收缓冲映射错位。
 
-![PSI5 同步周期与响应时隙](/images/hardware/psi5-l9663-guide/slot-timing.svg)
+![PSI5 同步周期与响应时隙](/images/hardware/psi5-automotive-sensor-guide/slot-timing.svg)
 
 ### 7.1 异步与同步
 
@@ -291,13 +291,13 @@ PSI5 的主要业务通常是传感器上行，但部分版本和子标准支持
 
 ### 8.1 Tooth-gap 方法
 
-按固定同步节拍本应出现脉冲；出现脉冲和缺失脉冲分别表示不同 bit。L9663 的 upstream data buffer 可以按 bit 决定是否屏蔽某一次同步触发。
+按固定同步节拍本应出现脉冲；出现脉冲和缺失脉冲分别表示不同 bit。主收发器的 upstream data buffer 可以按 bit 决定是否屏蔽某一次同步触发。
 
 接收端必须区分“故意缺脉冲”和真正的同步丢失，所以命令格式、起始条件和 CRC 很重要。
 
 ### 8.2 Pulse-width 方法
 
-每次仍然产生同步脉冲，但用标准短脉冲和长脉冲编码不同 bit。在 PSI5 2.x 模式中，L9663 可以按上行缓冲 bit 生成短或长同步脉冲。
+每次仍然产生同步脉冲，但用标准短脉冲和长脉冲编码不同 bit。在 PSI5 2.x 模式中，主收发器可以按上行缓冲 bit 生成短或长同步脉冲。
 
 同步电压幅值与脉宽必须同时满足目标传感器规范，否则可能既不能同步，也不能正确解码命令。
 
@@ -328,23 +328,23 @@ PSI5 v2.x 数据区可以留出 2 bit messaging 字段，把较慢的信息分�
 
 > AE 视角：客户说“raw data 不对”时，先确认截取的是哪个字段，是否把 Status 或 Frame Counter 当成数据，是否按 D0 first 重组，以及错误码是否与正常量程共用编码空间。
 
-## 10. L9663：把协议落到一颗主收发器
+## 10. 主收发器：把协议落到工程架构
 
-L9663 是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器线，集成供电和预稳压相关控制、同步脉冲、限流保护、电流接收、Manchester 解码、时隙监控、缓冲、诊断和 32-bit SPI。
+主收发器是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器线，集成供电和预稳压相关控制、同步脉冲、限流保护、电流接收、Manchester 解码、时隙监控、缓冲、诊断和 32-bit SPI。
 
-![L9663 Mode 1 和 Mode 2 的职责边界](/images/hardware/psi5-l9663-guide/l9663-architecture.svg)
+![主收发器 Mode 1 和 Mode 2 的职责边界](/images/hardware/psi5-automotive-sensor-guide/transceiver-architecture.svg)
 
 ### 10.1 Mode 1 与 Mode 2
 
-| 项目 | Mode 1：L9663 解码 | Mode 2：外部 MCU 解码 |
+| 项目 | Mode 1：主收发器解码 | Mode 2：外部 MCU 解码 |
 | --- | --- | --- |
 | MCU 接口 | 32-bit SPI 读缓冲与状态 | DOUT/SYNC 直接数字接口 |
-| Manchester | L9663 解码并可检查错误 | MCU 的 PSI5 外设负责 |
-| 时隙与缓冲 | L9663 可监控并保存多个帧 | 主要由 MCU 外设管理 |
+| Manchester | 主收发器解码并可检查错误 | MCU 的 PSI5 外设负责 |
+| 时隙与缓冲 | 主收发器可监控并保存多个帧 | 主要由 MCU 外设管理 |
 | 适用场景 | 普通 MCU，降低软件实时性 | MCU 已集成 PSI5 控制器 |
 | 主要风险 | 寄存器和 SPI CRC 配置复杂 | MCU 时序和解码能力要求高 |
 
-### 10.2 L9663 接收链路
+### 10.2 主收发器接收链路
 
 1. 镜像或采样传感器线电流，估计静态基线 `IBase`。
 2. 用固定或动态阈值，把电流恢复为数字高低级。
@@ -355,7 +355,7 @@ L9663 是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器
 
 ### 10.3 需要留意的工程特性
 
-根据本文的主资料，L9663 的典型工程关注点包括：
+根据本文的主资料，主收发器的典型工程关注点包括：
 
 - 两个独立 PSI5 通道；每个同步周期可以配置多个接收帧；
 - 支持 83.3、125 和 189 kbps，接收数据区覆盖 8 到 28 bit；
@@ -363,16 +363,16 @@ L9663 是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器
 - 上行数据缓冲支持 tooth-gap 或 pulse-width 的 ECU -> sensor 透明发送；
 - 提供短地、反向电压、欠压、过压和同步幅值等诊断或保护能力。
 
-配置原则是：先选系统架构（Mode 1 或 Mode 2），再固定传感器模式参数，最后填写 L9663 寄存器。不要从默认寄存器值倒推系统模式；上电时接口默认关闭，应在电源和时序正确后再启用通道。
+配置原则是：先选系统架构（Mode 1 或 Mode 2），再固定传感器模式参数，最后填写 主收发器寄存器。不要从默认寄存器值倒推系统模式；上电时接口默认关闭，应在电源和时序正确后再启用通道。
 
 ## 11. MCU 固件架构：把实时接收与业务解耦
 
-对 STM32 一类普通 MCU，推荐优先评估 L9663 Mode 1：由收发器完成电流判决、Manchester 和时隙映射，MCU 通过 SPI 批量读取。固件可以拆成下面几层：
+对 STM32 一类普通 MCU，推荐优先评估 主收发器 Mode 1：由收发器完成电流判决、Manchester 和时隙映射，MCU 通过 SPI 批量读取。固件可以拆成下面几层：
 
 | 层 | 职责 | 建议接口 |
 | --- | --- | --- |
-| `l9663_hal` | CS、SPI、RESET、SYNC、IRQ 和 32-bit 原始事务 | `read32` / `write32` / `trigger_sync` |
-| `l9663_driver` | 寄存器、SPI CRC、状态和通道控制 | `init` / `config` / `read_status` / `read_slot` |
+| `psi5_hal` | CS、SPI、RESET、SYNC、IRQ 和 32-bit 原始事务 | `read32` / `write32` / `trigger_sync` |
+| `psi5_driver` | 寄存器、SPI CRC、状态和通道控制 | `init` / `config` / `read_status` / `read_slot` |
 | `psi5_link` | bit 长度、Parity/CRC、slot、frame counter | `decode_frame` / `check_integrity` |
 | `sensor_x` | 字段拆分、错误码、raw 到物理量 | `parse` / `convert` / `self_test` |
 | `app` | 采样、日志、诊断和故障策略 | `task` / `event` / `telemetry` |
@@ -380,7 +380,7 @@ L9663 是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器
 ### 11.1 推荐初始化顺序
 
 1. 保持 PSI5 通道关闭，建立 VB、VDD、VAS、VSYNC 所需的电源与外部器件。
-2. 复位 L9663，读取状态或默认值，先证明 SPI 的 CPOL/CPHA、32-bit 帧和 SPI CRC 正确。
+2. 复位 主收发器，读取状态或默认值，先证明 SPI 的 CPOL/CPHA、32-bit 帧和 SPI CRC 正确。
 3. 写全局模式：Mode 1/2、PSI5 版本、baud、CRC 检查策略和同步编码方法。
 4. 逐通道配置帧数、每帧数据长度、Parity/CRC、时隙起止和监控方式。
 5. 配置同步源：SPI、SYNCx 或内部 timer；如果不用 ECU -> sensor 命令，先用标准短 SYNC。
@@ -392,15 +392,15 @@ L9663 是双通道汽车 PSI5 主收发器，连接 MCU 与两路 PSI5 传感器
 ```c
 void PSI5_Task(void)
 {
-    if (l9663_irq_pending()) {
-        l9663_status_t status = l9663_read_status();
+    if (psi5_irq_pending()) {
+        psi5_status_t status = psi5_read_status();
         log_faults(status);
 
         for (uint8_t ch = 0U; ch < 2U; ++ch) {
             for (uint8_t slot = 0U;
                  slot < configured_slots[ch];
                  ++slot) {
-                l9663_frame_t frame = l9663_read_slot(ch, slot);
+                psi5_frame_t frame = psi5_read_slot(ch, slot);
 
                 if (frame.valid && psi5_check_frame(&frame)) {
                     sensor_publish(ch, slot, sensor_parse(&frame));
@@ -413,13 +413,13 @@ void PSI5_Task(void)
 }
 ```
 
-业务层不要只保存换算后的 `float`。至少保留 timestamp、channel、slot、raw data、frame length、CRC/parity result、Manchester/slot error 和 L9663 status。没有这些字段，EMC 或偶发故障很难复盘。
+业务层不要只保存换算后的 `float`。至少保留 timestamp、channel、slot、raw data、frame length、CRC/parity result、Manchester/slot error 和 主收发器 status。没有这些字段，EMC 或偶发故障很难复盘。
 
 ## 12. 示波器与逻辑分析仪：一层一层抓证据
 
 PSI5 调试最怕“只看 SPI 打印值”。正确方法是建立从模拟线到数字帧的证据链：供电 -> 同步 -> 电流调制 -> Manchester -> 帧和时隙 -> SPI 与软件。
 
-![PSI5 六层调试证据链](/images/hardware/psi5-l9663-guide/debug-chain.svg)
+![PSI5 六层调试证据链](/images/hardware/psi5-automotive-sensor-guide/debug-chain.svg)
 
 ### 12.1 建议仪器连接
 
@@ -438,7 +438,7 @@ PSI5 调试最怕“只看 SPI 打印值”。正确方法是建立从模拟线�
 2. 只启用一个通道和一个传感器，测稳定的 `VPSI` 与 `Iq`。
 3. 触发一个标准短 SYNC，测线端实际幅值、宽度、上升沿和下降沿。
 4. 在预期 slot 内寻找 `dI`，并测得 `tBIT`。
-5. 同时读取 L9663 buffer/status，把模拟波形与数字结果一一对应。
+5. 同时读取 主收发器 buffer/status，把模拟波形与数字结果一一对应。
 
 ### 12.3 一张波形怎么读
 
@@ -459,7 +459,7 @@ PSI5 调试最怕“只看 SPI 打印值”。正确方法是建立从模拟线�
 | 偶发 Manchester error | 物理层或 EMC | 毛刺、地偏移、线容 | bit-time 窗口、deglitch |
 | Parity/CRC error | 位序或丢位 | 覆盖范围、D0 first、帧长度 | 物理毛刺、错误起点 |
 | slot error | 时间规划 | frame start/end、guard | SYNC 延迟、时钟容差 |
-| SPI 数据不变 | MCU/L9663 接口 | CS、CPOL/CPHA、地址 | buffer empty、读时序、SPI CRC |
+| SPI 数据不变 | MCU/主收发器 接口 | CS、CPOL/CPHA、地址 | buffer empty、读时序、SPI CRC |
 | 第二节点加入后失败 | 总线负载或碰撞 | `Iq` 总和、时隙重叠 | 线容、阈值、供电压降 |
 
 ### 13.1 高效排查顺序
@@ -553,7 +553,7 @@ PSI5 slot 与 TDM slot 都用于时间复用，但 PSI5 的 slot 是“SYNC 后�
 1. 为什么只测 `VPSI` 电压可能看不到清晰的传感器上行数据？
 2. Manchester 的 bit 边界跳变和中点跳变，哪个是必然的？判 0/1 看什么？
 3. `P16CRC-500/2L` 中每段代表什么？125 kbps 时一帧占多少时间？
-4. 为什么传感器 frame CRC 与 L9663 SPI CRC 不应共用同一个函数？
+4. 为什么传感器 frame CRC 与 主收发器 SPI CRC 不应共用同一个函数？
 5. 同步系统加入第二个传感器后 CRC 错误变多，哪些物理层与时隙因素会变化？
 
 ### 17.2 建议实操
@@ -561,10 +561,10 @@ PSI5 slot 与 TDM slot 都用于时间复用，但 PSI5 的 slot 是“SYNC 后�
 1. 用公开 CRC 向量写单元测试：`000h -> 6`、`151h -> 0`、`3FFh -> 4`。
 2. 在纸上画出 10-bit parity 帧的数据位序，并从一个十六进制 raw 写出发送顺序。
 3. 用示波器同时抓 SYNC 与分流电阻压降，测 `Tstart`、`tBIT`、`dI`。
-4. 把同一帧从模拟电流、DOUT 位流、L9663 SPI buffer 三处逐位对应。
-5. 故意配置错误 baud 或 slot，记录 L9663 的 Manchester、slot、CRC 错误表现。
+4. 把同一帧从模拟电流、DOUT 位流、主收发器 SPI buffer 三处逐位对应。
+5. 故意配置错误 baud 或 slot，记录 主收发器的 Manchester、slot、CRC 错误表现。
 
-真正掌握的标志是：即使没有协议解码器，也能从 SYNC 与电流波形手动恢复一帧；能说明每个 bit 的意义；能把 L9663 状态与波形对应；能判断问题属于供电、物理层、Manchester、时隙、校验还是应用数据语义。
+真正掌握的标志是：即使没有协议解码器，也能从 SYNC 与电流波形手动恢复一帧；能说明每个 bit 的意义；能把 主收发器状态与波形对应；能判断问题属于供电、物理层、Manchester、时隙、校验还是应用数据语义。
 
 ## 18. 术语速查
 
@@ -584,14 +584,14 @@ PSI5 slot 与 TDM slot 都用于时间复用，但 PSI5 的 slot 是“SYNC 后�
 | Tooth gap | 通过缺失或屏蔽同步脉冲编码 ECU -> sensor 信息 |
 | Pulse width | 通过短或长同步脉冲编码 ECU -> sensor 信息 |
 | DOUT | 主收发器恢复出的数字接收信号 |
-| UDB | L9663 upstream data buffer，用于发送同步序列信息 |
+| UDB | 主收发器 upstream data buffer，用于发送同步序列信息 |
 
 ## 19. 资料来源与继续阅读
 
-1. STMicroelectronics, *L9663 Automotive PSI5 Transceiver IC*, DS11401 Rev 7, 2025-10。本文关于 L9663 架构、模式、同步、buffer、SPI 与诊断的内容以该资料为主。
-2. STMicroelectronics, [L9663 operation in PSI5-P operation mode, AN5366](https://www.st.com/resource/en/application_note/an5366-l9663-operation-in-psi5p-operation-mode-stmicroelectronics.pdf)。
-3. NXP Semiconductors, [FXPS71407S Data Sheet](https://www.nxp.com/docs/en/data-sheet/FXPS71407S.pdf)，其中包含 PSI5 物理层、Manchester、帧和 CRC 示例。
-4. NXP Semiconductors, [PSI5 Normal Mode Initialization and Main Features for the FXLS93xxx, AN12776](https://www.nxp.com/docs/en/application-note/AN12776.pdf)。
+1. 主收发器厂商数据手册。
+2. 主收发器应用说明。
+3. 某款 PSI5 传感器数据手册，用于物理层、Manchester、帧和 CRC 示例。
+4. 某系列 PSI5 传感器应用说明。
 5. Infineon Technologies, *AURIX Peripheral Sensor Interface Training*。
 6. PSI5 Consortium official site: [psi5.org](https://psi5.org/)。
 

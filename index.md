@@ -14,7 +14,7 @@ hero:
       link: /hardware/PNSemiconductor
     - theme: brand
       text: 🌍 查看个人项目
-      link: /projects/tps54302-module
+      link: /projects/synchronous-buck-module
     - theme: brand
       text: 🌌 灵感与思考
       link: /ideas/workflow-tools

@@ -81,33 +81,17 @@
 电子系统的核心是定制化的 PCB，它集成了主控、电源管理、传感器接口和驱动等于一体。
 本项目主控板原理图如下所示：
 <br>
-<p align="center">
-  <img src="/images/projects/TVC-UAV/Schematic.png" alt="硬件系统架构图" width="700"/>
-</p>
-
 硬件系统架构：
 <br>
-<p align="center">
-  <img src="/images/projects/TVC-UAV/hardware_architecture_CN.png" alt="硬件系统架构图" width="700"/>
-</p>
-
-* **核心控制器:** ESP32-WROOM-32 模块，其双核处理器和 FreeRTOS 支持为实时多任务处理提供了强大的算力保障。
-* **传感器:** ICM-20948 九轴陀螺仪，通过其内置的数字运动处理器（DMP）直接输出四元数姿态数据，大大减轻了主控的计算负担。
+* **核心控制器:** ESP32 模组，其双核处理器和 FreeRTOS 支持为实时多任务处理提供了强大的算力保障。
+* **传感器:** 某款九轴 IMU，通过其内置的数字运动处理器（DMP）直接输出四元数姿态数据，大大减轻了主控的计算负担。
 * **硬件系统架构:** 遵循“感知→决策→执行”的闭环逻辑。
 
 <br>
-<p align="center">
-  <img src="/images/projects/TVC-UAV/power_architecture_CN.png" alt="电源架构图" width="700"/>
-</p>
-
 * **电源架构:** 采用单电池供电，通过两个独立的 DC-DC 模块实现高/低压分离供电。一路经 LDO 为 ESP32 和陀螺仪提供纯净的 3.3V 电源；另一路直接为4个舵机提供 5V 电源，满足其瞬时大电流需求。
 
 * **四层 PCB布局:**
     <br>
-    <p align="center">
-      <img src="/images/projects/TVC-UAV/pcb_layoput.png" alt="四层PCB Layout" width="700"/>
-    </p>
-    
     * 顶层与底层：放置主要元器件和完整的接地层。
     * 内部信号层：走关键信号线，如 I2C 和 PWM，以减少干扰。
     * 大面积铺铜与过孔设计，以支持大电流传输。
@@ -115,9 +99,6 @@
     * 集成了自动下载电路、电源反接保护和状态指示灯等辅助功能。
 * **PCB实物图:**
 <br>
-<p align="center">
-  <img src="/images/projects/TVC-UAV/pcb_photo_EN.png" alt="PCB实物正反面图" width="700"/>
-</p>
 <br>
 
 ---
