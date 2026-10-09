@@ -98,6 +98,7 @@ markdown: {
             { text: '带隙基准原理与芯片测试学习指南', link: '/hardware/bandgap-reference' },
             { text: 'PSI5 协议学习手册：从原理到车规传感器调试', link: '/hardware/psi5-automotive-sensor-guide' },
             { text: '为什么 MEMS 加速度计常用 Sigma-Delta ADC、低通滤波与 FIR', link: '/hardware/mems-accelerometer-sigma-delta' },
+            { text: '传感器噪声测试：标准差、Noise RMS、峰值与 ODR', link: '/hardware/sensor-noise-rms-peak-odr' },
           ]
         },
         {

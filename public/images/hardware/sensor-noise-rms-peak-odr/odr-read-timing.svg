@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">ODR 更新、快速轮询与 DRDY 读取时刻</title>
+  <desc id="desc">传感器每毫秒更新一次数据；快速轮询在更新间隔内重复读取同一个样本；DRDY 读取在更新后进行。</desc>
+  <rect width="1000" height="430" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#242b31">
+    <text x="30" y="40" font-size="24" font-weight="700">新样本的产生时刻由 ODR 决定</text>
+    <text x="30" y="71" font-size="16">示例：ODR = 1000 Hz，更新周期 = 1 ms；读取时刻仅为示意</text>
+    <text x="30" y="135" font-size="18">Sensor 更新</text>
+    <text x="30" y="235" font-size="18">快速轮询</text>
+    <text x="30" y="335" font-size="18">DRDY 后读取</text>
+    <g stroke="#d1d5db" stroke-width="2"><path d="M210 160H950 M210 260H950 M210 360H950"/></g>
+    <g stroke="#167c9d" stroke-width="4"><path d="M240 108V160 M410 108V160 M580 108V160 M750 108V160 M920 108V160"/></g>
+    <g font-size="16" text-anchor="middle"><text x="240" y="185">0 ms</text><text x="410" y="185">1 ms</text><text x="580" y="185">2 ms</text><text x="750" y="185">3 ms</text><text x="920" y="185">4 ms</text></g>
+    <g fill="#b05b24"><circle cx="255" cy="260" r="6"/><circle cx="300" cy="260" r="6"/><circle cx="345" cy="260" r="6"/><circle cx="390" cy="260" r="6"/><circle cx="425" cy="260" r="6"/><circle cx="470" cy="260" r="6"/><circle cx="515" cy="260" r="6"/><circle cx="560" cy="260" r="6"/><circle cx="595" cy="260" r="6"/><circle cx="640" cy="260" r="6"/><circle cx="685" cy="260" r="6"/><circle cx="730" cy="260" r="6"/></g>
+    <g font-size="16" text-anchor="middle" fill="#9a4c1e"><text x="325" y="229">多次读到样本 A</text><text x="495" y="229">多次读到样本 B</text><text x="665" y="229">多次读到样本 C</text></g>
+    <g fill="#258156"><circle cx="255" cy="360" r="7"/><circle cx="425" cy="360" r="7"/><circle cx="595" cy="360" r="7"/><circle cx="765" cy="360" r="7"/><circle cx="935" cy="360" r="7"/></g>
+    <g font-size="16" fill="#216d49" text-anchor="middle"><text x="255" y="332">A</text><text x="425" y="332">B</text><text x="595" y="332">C</text><text x="765" y="332">D</text><text x="935" y="332">E</text></g>
+    <text x="210" y="408" font-size="17">SPI SCK 决定一次传输多快，不能让 Sensor 提前生成下一组数据。</text>
+  </g>
+</svg>
