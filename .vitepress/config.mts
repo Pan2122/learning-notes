@@ -105,6 +105,7 @@ markdown: {
           text: 'EDA 工具',
           items: [
             { text: 'AD设计小Tips', link: '/hardware/ad-shortcuts' },
+            { text: 'AD 圆角矩形与 PCB 板框绘制', link: '/hardware/ad-rounded-board-shape' },
           ]
         },
         {
