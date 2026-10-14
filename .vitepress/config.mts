@@ -90,6 +90,7 @@ markdown: {
             { text: 'PN结原理', link: '/hardware/PNSemiconductor' },
             //{ text: '电路设计', link: '/hardware/basic-circuit' },
             { text: '环路稳定性分析', link: '/hardware/LoopStability' },
+            { text: '相位裕度与增益裕度：从波特图到 DC-DC 补偿', link: '/hardware/phase-gain-margin-dcdc' },
           ]
         },
         {
